@@ -7,12 +7,14 @@ import java.util.List;
 public class GameModel {
     private Integer round;
     private List<Boolean> winnerList;
-    private HashMap<Integer, LinkedList> draw;
+    private HashMap<Integer, LinkedList<Item>> draw;
 
     public GameModel() {
         this.round = 0;
         winnerList = new LinkedList<>();
-        HashMap<Integer, LinkedList> draw;
+        draw = new HashMap<>();
+        draw.put(0, new LinkedList<>());
+        draw.put(1, new LinkedList<>());
     }
 
     public Integer getRound() {
@@ -29,6 +31,14 @@ public class GameModel {
 
     public void setWinnerList(List<Boolean> winnerList) {
         this.winnerList = winnerList;
+    }
+
+    public HashMap<Integer, LinkedList<Item>> getDraw() {
+        return draw;
+    }
+
+    public void setDraw(HashMap<Integer, LinkedList<Item>> draw) {
+        this.draw = draw;
     }
 
     public boolean checkGameOver() {
@@ -50,9 +60,15 @@ public class GameModel {
         return false;
     }
 
-    public void addRound(Boolean winner) {
+    public boolean addRound(Item playerOneChoice, Item playerTwoChoice) {
+        if (playerOneChoice.compareTo(playerTwoChoice) == 0) {
+            return false;
+        }
         this.round++;
-        winnerList.add(winner);
+        winnerList.add(playerOneChoice.compareTo(playerTwoChoice) > 0);
+        draw.get(0).add(playerOneChoice);
+        draw.get(1).add(playerTwoChoice);
+        return true;
     }
 
 
