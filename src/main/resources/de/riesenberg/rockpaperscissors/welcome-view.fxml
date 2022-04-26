@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.riesenberg.rockpaperscissors.controller.WelcomeController"
+            prefHeight="400.0" prefWidth="600.0">
+    <BorderPane id="BorderPane" xmlns:fx="http://javafx.com/fxml/1">
+            <top>
+                <VBox>
+                    <Label fx:id="welcomeText" maxWidth="Infinity" alignment="CENTER" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                </VBox>
+            </top>
+            <right>
+            </right>
+            <bottom>
+            </bottom>
+            <left>
+            </left>
+            <center>
+                <Button text="Neues Spiel" onAction="#onStartButton" alignment="BOTTOM_LEFT"/>
+            </center>
+    </BorderPane>
+</AnchorPane>
