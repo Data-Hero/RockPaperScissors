@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox prefHeight="200" prefWidth="800" spacing="50" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0">
+    <children>
+        <Button style="-fx-background-color: #CDDFE6;
+                                                -fx-background-image: url('../resources/de/riesenberg/rockpaperscissors/images/rock.png');
+                                                -fx-background-size: 18 18;
+                                                -fx-background-repeat: no-repeat;
+                                                -fx-background-position:left;" text="Stein" prefWidth="200"
+                prefHeight="150"/>
+        <Button style="-fx-background-color: #CDDFE6;
+                                                -fx-background-image: url('../resources/de/riesenberg/rockpaperscissors/images/paper.png');
+                                                -fx-background-size: 18 18;
+                                                -fx-background-repeat: no-repeat;
+                                                -fx-background-position:left;" text="Papier" prefWidth="200"
+                prefHeight="150"/>
+        <Button style="-fx-background-color: #CDDFE6;
+                                                -fx-background-image: url('../resources/de/riesenberg/rockpaperscissors/images/scissor.png');
+                                                -fx-background-size: 18 18;
+                                                -fx-background-repeat: no-repeat;
+                                                -fx-background-position:left;" text="Scheere" prefWidth="200"
+                prefHeight="150"/>
+    </children>
+</HBox>
+

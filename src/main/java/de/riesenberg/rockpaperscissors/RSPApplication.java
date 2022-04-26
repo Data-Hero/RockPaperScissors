@@ -2,9 +2,11 @@ package de.riesenberg.rockpaperscissors;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,7 +19,9 @@ public class RSPApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RSPApplication.class.getResource("welcome-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+        Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()-10,bounds.getHeight()-30 );
         primaryStage.setTitle("Schere, Stein, Papier!");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("C:\\Users\\Bijan\\IdeaProjects\\RockPaperScissors\\src\\main\\resources\\de\\riesenberg\\rockpaperscissors\\images\\icon.png"));
