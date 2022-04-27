@@ -7,7 +7,8 @@
 <?import javafx.stage.Screen?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.riesenberg.rockpaperscissors.controller.WelcomeController"
+            fx:id="mainWindow"
+            fx:controller="de.riesenberg.rockpaperscissors.viewmodel.WelcomeController"
             maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
             minWidth="-Infinity"
             style="-fx-background-color: #ffffff;"
@@ -17,7 +18,7 @@
     </fx:define>
     <children>
         <VBox>
-            <Label fx:id="welcomeText" BorderPane.alignment="TOP_RIGHT">
+            <Label fx:id="welcomeText" AnchorPane.bottomAnchor="600" AnchorPane.leftAnchor="8500">
                 <font>
                     <Font size="16"/>
                 </font>

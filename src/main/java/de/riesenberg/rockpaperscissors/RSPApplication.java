@@ -19,9 +19,11 @@ public class RSPApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RSPApplication.class.getResource("welcome-view.fxml"));
+
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
         Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()-10,bounds.getHeight()-30 );
+
         primaryStage.setTitle("Schere, Stein, Papier!");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("C:\\Users\\Bijan\\IdeaProjects\\RockPaperScissors\\src\\main\\resources\\de\\riesenberg\\rockpaperscissors\\images\\icon.png"));
