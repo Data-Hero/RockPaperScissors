@@ -11,6 +11,7 @@ public enum ItemEnum {
             case 0 -> ItemEnum.ROCK;
             case 1 -> ItemEnum.PAPER;
             case 2 -> ItemEnum.SCISSOR;
+            case 3 -> ItemEnum.NONE;
             default -> throw new IllegalStateException("Unexpected value: " + id);
         };
     }
