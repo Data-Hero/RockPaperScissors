@@ -22,9 +22,9 @@ public class Item {
             return 1;
         } else if (this.getItem() == ItemEnum.ROCK && secondItem.getItem() == ItemEnum.SCISSOR ||
                 this.getItem() == ItemEnum.SCISSOR && secondItem.getItem() == ItemEnum.ROCK) {
-            return -1*(this.getItem().getId()-secondItem.getItem().getId());
+            return -1 * (this.getItem().getId() - secondItem.getItem().getId());
         } else {
-            return this.getItem().getId()-secondItem.getItem().getId();
+            return this.getItem().getId() - secondItem.getItem().getId();
         }
     }
 

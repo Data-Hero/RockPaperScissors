@@ -44,21 +44,22 @@ public class Game {
     public boolean checkGameOver() {
         int playerWins = 0;
         int computerWins = 0;
-        for (Boolean b: winnerList) {
-            if(b) {
+        for (Boolean b : winnerList) {
+            if (b) {
                 playerWins++;
-                if(playerWins >= 3) {
+                if (playerWins >= 3) {
                     return true;
                 }
             } else {
                 computerWins++;
-                if(computerWins >= 3) {
+                if (computerWins >= 3) {
                     return true;
                 }
             }
         }
         return false;
     }
+
     public Integer addRound(Item playerOneChoice, Item playerTwoChoice) {
         if (playerOneChoice.compareTo(playerTwoChoice) == 0) {
             return 0;
@@ -73,7 +74,6 @@ public class Game {
     public void playRound() {
 
     }
-
 
 
 }

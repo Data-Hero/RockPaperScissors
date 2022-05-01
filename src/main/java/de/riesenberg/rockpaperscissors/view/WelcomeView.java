@@ -15,10 +15,9 @@ import java.io.IOException;
 
 public class WelcomeView {
 
+    private final WelcomeViewModel welcomeViewModel = new WelcomeViewModel();
     @FXML
     private Label welcomeLabel;
-
-    private WelcomeViewModel welcomeViewModel = new WelcomeViewModel();
 
     @FXML
     private void initialize() {
@@ -32,7 +31,7 @@ public class WelcomeView {
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
         try {
-            labelStage.setScene(new Scene(fxmlLoader.load(), bounds.getWidth()-10,bounds.getHeight()-30 ));
+            labelStage.setScene(new Scene(fxmlLoader.load(), bounds.getWidth() - 10, bounds.getHeight() - 30));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

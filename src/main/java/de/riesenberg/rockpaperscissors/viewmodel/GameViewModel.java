@@ -3,32 +3,28 @@ package de.riesenberg.rockpaperscissors.viewmodel;
 import de.riesenberg.rockpaperscissors.model.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.Observable;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.util.Duration;
-
-import java.util.LinkedList;
 
 public class GameViewModel {
 
 
-    private BooleanProperty nextRoundButtonDisabled = new SimpleBooleanProperty(true);
-    private BooleanProperty leaveButtonDisabled = new SimpleBooleanProperty(true);
-    private BooleanProperty rockButtonDisabled = new SimpleBooleanProperty(false);
-    private BooleanProperty paperButtonDisabled = new SimpleBooleanProperty(false);
-    private BooleanProperty scissorButtonDisabled = new SimpleBooleanProperty(false);
+    private final BooleanProperty nextRoundButtonDisabled = new SimpleBooleanProperty(true);
+    private final BooleanProperty leaveButtonDisabled = new SimpleBooleanProperty(true);
+    private final BooleanProperty rockButtonDisabled = new SimpleBooleanProperty(false);
+    private final BooleanProperty paperButtonDisabled = new SimpleBooleanProperty(false);
+    private final BooleanProperty scissorButtonDisabled = new SimpleBooleanProperty(false);
 
-    private IntegerProperty winner = new SimpleIntegerProperty();
+    private final IntegerProperty winner = new SimpleIntegerProperty();
 
-    private StringProperty countdownLabel = new SimpleStringProperty();
-    private StringProperty winnerLabel = new SimpleStringProperty();
+    private final StringProperty countdownLabel = new SimpleStringProperty();
+    private final StringProperty winnerLabel = new SimpleStringProperty();
 
-    private ObjectProperty<Item> playerChoice = new SimpleObjectProperty<>();
-    private ObjectProperty<Item> computerChoice = new SimpleObjectProperty<>();
+    private final ObjectProperty<Item> playerChoice = new SimpleObjectProperty<>();
+    private final ObjectProperty<Item> computerChoice = new SimpleObjectProperty<>();
 
     private ObservableList<GameRound> winnerList;
 
@@ -39,13 +35,13 @@ public class GameViewModel {
     public GameViewModel(Game game) {
         this.game = game;
         this.setCountdownLabel("Scheere");
-        winnerList = FXCollections.observableList(new LinkedList<>());
+        winnerList = FXCollections.observableArrayList();
     }
 
     public GameViewModel() {
         this.game = new Game();
         this.setCountdownLabel("Scheere");
-        winnerList = FXCollections.observableList(new LinkedList<>());
+        winnerList = FXCollections.observableArrayList();
     }
 
     private void runCountdown() {
@@ -75,10 +71,7 @@ public class GameViewModel {
     }
 
 
-    public boolean startRound() {
-        if (game.checkGameOver()) {
-            return false;
-        }
+    public void startRound() {
         rockButtonDisabled.set(true);
         paperButtonDisabled.set(true);
         scissorButtonDisabled.set(true);
@@ -86,7 +79,6 @@ public class GameViewModel {
         leaveButtonDisabled.set(false);
         this.setCountdownLabel("Scheere");
         this.runCountdown();
-        return true;
     }
 
 
@@ -100,13 +92,16 @@ public class GameViewModel {
                 getComputerChoice()
         );
         setWinner(result);
+
         winnerList.add(new GameRound(getPlayerChoice(), getComputerChoice()));
-        System.out.println(winnerList);
         rockButtonDisabled.set(false);
         paperButtonDisabled.set(false);
         scissorButtonDisabled.set(false);
         nextRoundButtonDisabled.set(true);
         leaveButtonDisabled.set(true);
+        if (game.checkGameOver()) {
+            setNextRoundButtonDisabled(false);
+        }
     }
 
     public void reset() {
@@ -139,24 +134,24 @@ public class GameViewModel {
         return playerChoice.get();
     }
 
-    public ObjectProperty<Item> playerChoiceProperty() {
-        return playerChoice;
-    }
-
     public void setPlayerChoice(Item playerChoice) {
         this.playerChoice.set(playerChoice);
+    }
+
+    public ObjectProperty<Item> playerChoiceProperty() {
+        return playerChoice;
     }
 
     public Item getComputerChoice() {
         return computerChoice.get();
     }
 
-    public ObjectProperty<Item> computerChoiceProperty() {
-        return computerChoice;
-    }
-
     public void setComputerChoice(Item computerChoice) {
         this.computerChoice.set(computerChoice);
+    }
+
+    public ObjectProperty<Item> computerChoiceProperty() {
+        return computerChoice;
     }
 
     public Boolean getChoiceAvailable() {
@@ -171,97 +166,96 @@ public class GameViewModel {
         return nextRoundButtonDisabled.get();
     }
 
-    public BooleanProperty nextRoundButtonDisabledProperty() {
-        return nextRoundButtonDisabled;
-    }
-
     public void setNextRoundButtonDisabled(boolean nextRoundButtonDisabled) {
         this.nextRoundButtonDisabled.set(nextRoundButtonDisabled);
+    }
+
+    public BooleanProperty nextRoundButtonDisabledProperty() {
+        return nextRoundButtonDisabled;
     }
 
     public boolean isLeaveButtonDisabled() {
         return leaveButtonDisabled.get();
     }
 
-    public BooleanProperty leaveButtonDisabledProperty() {
-        return leaveButtonDisabled;
-    }
-
     public void setLeaveButtonDisabled(boolean leaveButtonDisabled) {
         this.leaveButtonDisabled.set(leaveButtonDisabled);
+    }
+
+    public BooleanProperty leaveButtonDisabledProperty() {
+        return leaveButtonDisabled;
     }
 
     public boolean isRockButtonDisabled() {
         return rockButtonDisabled.get();
     }
 
-    public BooleanProperty rockButtonDisabledProperty() {
-        return rockButtonDisabled;
-    }
-
     public void setRockButtonDisabled(boolean rockButtonDisabled) {
         this.rockButtonDisabled.set(rockButtonDisabled);
+    }
+
+    public BooleanProperty rockButtonDisabledProperty() {
+        return rockButtonDisabled;
     }
 
     public boolean isPaperButtonDisabled() {
         return paperButtonDisabled.get();
     }
 
-    public BooleanProperty paperButtonDisabledProperty() {
-        return paperButtonDisabled;
-    }
-
     public void setPaperButtonDisabled(boolean paperButtonDisabled) {
         this.paperButtonDisabled.set(paperButtonDisabled);
+    }
+
+    public BooleanProperty paperButtonDisabledProperty() {
+        return paperButtonDisabled;
     }
 
     public boolean isScissorButtonDisabled() {
         return scissorButtonDisabled.get();
     }
 
-    public BooleanProperty scissorButtonDisabledProperty() {
-        return scissorButtonDisabled;
-    }
-
     public void setScissorButtonDisabled(boolean scissorButtonDisabled) {
         this.scissorButtonDisabled.set(scissorButtonDisabled);
+    }
+
+    public BooleanProperty scissorButtonDisabledProperty() {
+        return scissorButtonDisabled;
     }
 
     public String getCountdownLabel() {
         return countdownLabel.get();
     }
 
-    public StringProperty countdownLabelProperty() {
-        return countdownLabel;
-    }
-
     public void setCountdownLabel(String countdownLabel) {
         this.countdownLabel.set(countdownLabel);
     }
 
+    public StringProperty countdownLabelProperty() {
+        return countdownLabel;
+    }
 
     public String getWinnerLabel() {
         return winnerLabel.get();
-    }
-
-    public StringProperty winnerLabelProperty() {
-        return winnerLabel;
     }
 
     public void setWinnerLabel(String winnerLabel) {
         this.winnerLabel.set(winnerLabel);
     }
 
+    public StringProperty winnerLabelProperty() {
+        return winnerLabel;
+    }
+
     public int getWinner() {
         return winner.get();
     }
 
-    public IntegerProperty winnerProperty() {
-        return winner;
-    }
-
     public void setWinner(int winner) {
         this.winner.set(winner);
+    }
+
+    public IntegerProperty winnerProperty() {
+        return winner;
     }
 
     public ObservableList<GameRound> getWinnerList() {
@@ -272,5 +266,5 @@ public class GameViewModel {
         this.winnerList = winnerList;
     }
 
-
 }
+
