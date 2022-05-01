@@ -1,15 +1,17 @@
 package de.riesenberg.rockpaperscissors.viewmodel;
 
-import de.riesenberg.rockpaperscissors.model.Computer;
-import de.riesenberg.rockpaperscissors.model.Game;
-import de.riesenberg.rockpaperscissors.model.Item;
-import de.riesenberg.rockpaperscissors.model.ItemEnum;
+import de.riesenberg.rockpaperscissors.model.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.Observable;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.util.Duration;
+
+import java.util.LinkedList;
 
 public class GameViewModel {
 
@@ -28,6 +30,8 @@ public class GameViewModel {
     private ObjectProperty<Item> playerChoice = new SimpleObjectProperty<>();
     private ObjectProperty<Item> computerChoice = new SimpleObjectProperty<>();
 
+    private ObservableList<GameRound> winnerList;
+
     private Boolean isChoiceAvailable = Boolean.FALSE;
 
     private Game game;
@@ -35,31 +39,13 @@ public class GameViewModel {
     public GameViewModel(Game game) {
         this.game = game;
         this.setCountdownLabel("Scheere");
+        winnerList = FXCollections.observableList(new LinkedList<>());
     }
 
     public GameViewModel() {
         this.game = new Game();
         this.setCountdownLabel("Scheere");
-    }
-
-    @FXML
-    public void startRound() {
-        rockButtonDisabled.set(true);
-        paperButtonDisabled.set(true);
-        scissorButtonDisabled.set(true);
-        nextRoundButtonDisabled.set(false);
-        leaveButtonDisabled.set(false);
-        this.setCountdownLabel("Scheere");
-        this.runCountdown();
-    }
-
-    @FXML
-    public void endRound() {
-        rockButtonDisabled.set(false);
-        paperButtonDisabled.set(false);
-        scissorButtonDisabled.set(false);
-        nextRoundButtonDisabled.set(true);
-        leaveButtonDisabled.set(true);
+        winnerList = FXCollections.observableList(new LinkedList<>());
     }
 
     private void runCountdown() {
@@ -72,11 +58,6 @@ public class GameViewModel {
                         }));
         timeline.setCycleCount(5);
         timeline.onFinishedProperty().set((ActionEvent ae) -> {
-            Integer result = game.addRound(this.playerChoice.getValue() == null ?
-                            new Item(ItemEnum.NONE) :
-                            this.playerChoice.getValue(),
-                    Computer.makeChoice());
-            setWinner(result);
             isChoiceAvailable = Boolean.FALSE;
             endRound();
         });
@@ -92,6 +73,46 @@ public class GameViewModel {
             default -> "Resultat";
         };
     }
+
+
+    public boolean startRound() {
+        if (game.checkGameOver()) {
+            return false;
+        }
+        rockButtonDisabled.set(true);
+        paperButtonDisabled.set(true);
+        scissorButtonDisabled.set(true);
+        nextRoundButtonDisabled.set(false);
+        leaveButtonDisabled.set(false);
+        this.setCountdownLabel("Scheere");
+        this.runCountdown();
+        return true;
+    }
+
+
+    public void endRound() {
+        computerChoice.set(Computer.makeChoice());
+
+        Integer result = game.addRound(
+                this.playerChoice.getValue() == null ?
+                        new Item(ItemEnum.NONE) :
+                        this.playerChoice.getValue(),
+                getComputerChoice()
+        );
+        setWinner(result);
+        winnerList.add(new GameRound(getPlayerChoice(), getComputerChoice()));
+        System.out.println(winnerList);
+        rockButtonDisabled.set(false);
+        paperButtonDisabled.set(false);
+        scissorButtonDisabled.set(false);
+        nextRoundButtonDisabled.set(true);
+        leaveButtonDisabled.set(true);
+    }
+
+    public void reset() {
+        this.game = new Game();
+    }
+
 
     public Boolean chooseRock() {
         if (this.isChoiceAvailable) {
@@ -243,8 +264,13 @@ public class GameViewModel {
         this.winner.set(winner);
     }
 
-    public void reset() {
-        this.game = new Game();
+    public ObservableList<GameRound> getWinnerList() {
+        return winnerList;
     }
+
+    public void setWinnerList(ObservableList<GameRound> winnerList) {
+        this.winnerList = winnerList;
+    }
+
 
 }

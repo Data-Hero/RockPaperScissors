@@ -1,30 +1,39 @@
 package de.riesenberg.rockpaperscissors.view;
 
 import de.riesenberg.rockpaperscissors.RSPApplication;
+import de.riesenberg.rockpaperscissors.model.GameRound;
+import de.riesenberg.rockpaperscissors.model.Item;
+import de.riesenberg.rockpaperscissors.model.ItemEnum;
 import de.riesenberg.rockpaperscissors.viewmodel.GameViewModel;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class GameView {
     @FXML
-    public TableColumn thead2;
+    public TableColumn<GameRound, String> playerOneTableColumn;
     @FXML
-    public TableColumn thead1;
+    public TableColumn<GameRound, String> playerTwoTableColumn;
     @FXML
     public Label winnerLabel;
+    @FXML
+    public TableView<GameRound> resultTable;
     @FXML
     private Label countdownLabel;
     @FXML
@@ -64,6 +73,19 @@ public class GameView {
 
         countdownLabel.textProperty().bind(gameViewModel.countdownLabelProperty());
         winnerLabel.textProperty().bind(gameViewModel.winnerLabelProperty());
+
+        List<GameRound> ll = List.of(new GameRound(new Item(ItemEnum.ROCK), new Item(ItemEnum.SCISSOR)));
+        gameViewModel.setWinnerList(FXCollections.observableList(ll));
+        resultTable.setItems(gameViewModel.getWinnerList());
+        playerOneTableColumn.setCellValueFactory(cellData -> {
+            GameRound gameRound = cellData.getValue();
+            return new SimpleStringProperty(gameRound.playerOneChoice().toString());
+        });
+
+        playerTwoTableColumn.setCellValueFactory(cellData -> {
+            GameRound gameRound = cellData.getValue();
+            return new SimpleStringProperty(gameRound.playerTwoChoice().toString());
+        });
     }
 
     public void onStartGame(ActionEvent actionEvent) {

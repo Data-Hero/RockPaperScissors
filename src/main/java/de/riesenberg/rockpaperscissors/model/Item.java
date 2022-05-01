@@ -27,4 +27,9 @@ public class Item {
             return this.getItem().getId()-secondItem.getItem().getId();
         }
     }
+
+    @Override
+    public String toString() {
+        return item.toString();
+    }
 }
