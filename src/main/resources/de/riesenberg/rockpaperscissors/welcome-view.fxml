@@ -5,30 +5,25 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.stage.Screen?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:id="mainWindow"
-            fx:controller="de.riesenberg.rockpaperscissors.viewmodel.WelcomeController"
-            maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-            minWidth="-Infinity"
-            style="-fx-background-color: #ffffff;"
-            prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}">
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="welcomeWindow"
+      alignment="CENTER"
+      fx:controller="de.riesenberg.rockpaperscissors.view.WelcomeView"
+      style="-fx-background-color: #ffffff;"
+      prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
     <children>
-        <VBox>
-            <Label fx:id="welcomeText" AnchorPane.bottomAnchor="600" AnchorPane.leftAnchor="8500">
-                <font>
-                    <Font size="16"/>
-                </font>
-            </Label>
-            <HBox spacing="10" alignment="CENTER">
-                <Label fx:id="EMPTY" prefWidth="90"/>
-                <Button text="Neues Spiel" onAction="#onStartButton" prefWidth="90"/>
-                <Label fx:id="EMPTY2" prefWidth="90"/>
-            </HBox>
-        </VBox>
-
+        <Label fx:id="welcomeLabel" alignment="CENTER" textAlignment="CENTER" maxWidth="1.7976931348623157E308">
+            <font>
+                <Font size="18"/>
+            </font>
+        </Label>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Neues Spiel" onAction="#onStartButton" prefWidth="90"/>
+        </HBox>
     </children>
-</AnchorPane>
+</VBox>

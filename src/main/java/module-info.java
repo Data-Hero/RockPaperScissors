@@ -14,4 +14,6 @@ module de.riesenberg.rockpaperscissors {
     opens de.riesenberg.rockpaperscissors.model to javafx.fxml;
     exports de.riesenberg.rockpaperscissors.viewmodel;
     opens de.riesenberg.rockpaperscissors.viewmodel to javafx.fxml;
+    exports de.riesenberg.rockpaperscissors.view;
+    opens de.riesenberg.rockpaperscissors.view to javafx.fxml;
 }

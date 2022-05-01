@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GameModel {
+public class Game {
     private Integer round;
     private List<Boolean> winnerList;
     private HashMap<Integer, LinkedList<Item>> draw;
 
-    public GameModel() {
+    public Game() {
         this.round = 0;
         winnerList = new LinkedList<>();
         draw = new HashMap<>();

@@ -1,34 +1,32 @@
-package de.riesenberg.rockpaperscissors.viewmodel;
+package de.riesenberg.rockpaperscissors.view;
 
 import de.riesenberg.rockpaperscissors.RSPApplication;
+import de.riesenberg.rockpaperscissors.viewmodel.WelcomeViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class WelcomeController {
+public class WelcomeView {
 
     @FXML
-    private AnchorPane mainWindow;
+    private Label welcomeLabel;
 
-    @FXML
-    private Label welcomeText;
+    private WelcomeViewModel welcomeViewModel = new WelcomeViewModel();
 
     @FXML
     private void initialize() {
-        welcomeText.setText("Wilkommen bei Schere, Stein, Papier");
+        welcomeLabel.textProperty().bind(welcomeViewModel.welcomeLabelProperty());
     }
 
-    @FXML
-    protected void onStartButton(ActionEvent event) {
-        Stage labelStage = (Stage) welcomeText.getScene().getWindow();
+    public void onStartButton(ActionEvent actionEvent) {
+        Stage labelStage = (Stage) welcomeLabel.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(RSPApplication.class.getResource("rsp-view.fxml"));
 
         Screen screen = Screen.getPrimary();
@@ -39,6 +37,4 @@ public class WelcomeController {
             throw new RuntimeException(e);
         }
     }
-
-
 }

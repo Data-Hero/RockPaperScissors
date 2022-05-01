@@ -4,17 +4,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Screen?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.geometry.Insets?>
 <AnchorPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}" style="-fx-background-color: #ffffff;"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.riesenberg.rockpaperscissors.viewmodel.GameController">
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.riesenberg.rockpaperscissors.view.GameView">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
     <children>
-        <SplitPane fx:id="mainWindowPane2" dividerPositions="0.7591973244147158" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane fx:id="splitPane" dividerPositions="0.7591973244147158" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
@@ -26,23 +25,23 @@
                         <GridPane prefHeight="150" prefWidth="800" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="500.0"  hgap="10" vgap="10">
                             <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
                             <children>
-                                <Button fx:id="nextRound"  style="-fx-background-color: #CDDFE6;" onAction="#onStartRound" text="Nächste Runde" prefWidth="200" prefHeight="120" maxWidth="-Infinity" GridPane.columnIndex="2"/>
+                                <Button fx:id="nextRound"  style="-fx-background-color: #CDDFE6;" onAction="#onStartGame" text="Nächste Runde" prefWidth="200" prefHeight="120" maxWidth="-Infinity" GridPane.columnIndex="2"/>
                                 <Button fx:id="leave" style="-fx-background-color: #CDDFE6;" onAction="#onLeave" text="Spiel verlassen" prefWidth="200" prefHeight="120" maxWidth="-Infinity" GridPane.columnIndex="1"/>
                                 <Button fx:id="rock" style="-fx-background-color: #CDDFE6;
-                                                -fx-background-image: url('../resources/de/riesenberg/rockpaperscissors/images/rock.png');
+                                                -fx-background-image: url('images/rock.png');
                                                 -fx-background-size: 18 18;
                                                 -fx-background-repeat: no-repeat;
                                                 -fx-background-position:left;" text="Stein" prefWidth="200" prefHeight="120" GridPane.columnIndex="1"/>
                                 <Button fx:id="paper" style="-fx-background-color: #CDDFE6;
-                                                -fx-background-image: url('../resources/de/riesenberg/rockpaperscissors/images/paper.png');
+                                                -fx-background-image: url('images/paper.png');
                                                 -fx-background-size: 18 18;
                                                 -fx-background-repeat: no-repeat;
-                                                -fx-background-position:left;" text="Papier" prefWidth="200" prefHeight="120" GridPane.columnIndex="2"/>
+                                                -fx-background-position:left;" text="Papier" prefWidth="200" prefHeight="120" GridPane.columnIndex="2" />
                                 <Button fx:id="scissor" style="-fx-background-color: #CDDFE6;
-                                                -fx-background-image: url('../resources/de/riesenberg/rockpaperscissors/images/scissor.png');
+                                                -fx-background-image: url('images/scissor.png');
                                                 -fx-background-size: 18 18;
                                                 -fx-background-repeat: no-repeat;
-                                                -fx-background-position:left;" text="Scheere" prefWidth="200" prefHeight="120" GridPane.columnIndex="3"/>
+                                                -fx-background-position:left;" text="Scheere" prefWidth="200" prefHeight="120" GridPane.columnIndex="3" />
                             </children>
                         </GridPane>
                      </children>
