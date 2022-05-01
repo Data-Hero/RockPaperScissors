@@ -59,16 +59,15 @@ public class Game {
         }
         return false;
     }
-
-    public boolean addRound(Item playerOneChoice, Item playerTwoChoice) {
+    public Integer addRound(Item playerOneChoice, Item playerTwoChoice) {
         if (playerOneChoice.compareTo(playerTwoChoice) == 0) {
-            return false;
+            return 0;
         }
         this.round++;
         winnerList.add(playerOneChoice.compareTo(playerTwoChoice) > 0);
         draw.get(0).add(playerOneChoice);
         draw.get(1).add(playerTwoChoice);
-        return true;
+        return playerOneChoice.compareTo(playerTwoChoice);
     }
 
     public void playRound() {

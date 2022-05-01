@@ -1,12 +1,13 @@
 package de.riesenberg.rockpaperscissors.viewmodel;
 
+import de.riesenberg.rockpaperscissors.model.Computer;
 import de.riesenberg.rockpaperscissors.model.Game;
+import de.riesenberg.rockpaperscissors.model.Item;
+import de.riesenberg.rockpaperscissors.model.ItemEnum;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.util.Duration;
 
@@ -19,7 +20,15 @@ public class GameViewModel {
     private BooleanProperty paperButtonDisabled = new SimpleBooleanProperty(false);
     private BooleanProperty scissorButtonDisabled = new SimpleBooleanProperty(false);
 
+    private IntegerProperty winner = new SimpleIntegerProperty();
+
     private StringProperty countdownLabel = new SimpleStringProperty();
+    private StringProperty winnerLabel = new SimpleStringProperty();
+
+    private ObjectProperty<Item> playerChoice = new SimpleObjectProperty<>();
+    private ObjectProperty<Item> computerChoice = new SimpleObjectProperty<>();
+
+    private Boolean isChoiceAvailable = Boolean.FALSE;
 
     private Game game;
 
@@ -30,8 +39,111 @@ public class GameViewModel {
 
     public GameViewModel() {
         this.game = new Game();
-        System.out.println(rockButtonDisabled.get());
         this.setCountdownLabel("Scheere");
+    }
+
+    @FXML
+    public void startRound() {
+        rockButtonDisabled.set(true);
+        paperButtonDisabled.set(true);
+        scissorButtonDisabled.set(true);
+        nextRoundButtonDisabled.set(false);
+        leaveButtonDisabled.set(false);
+        this.setCountdownLabel("Scheere");
+        this.runCountdown();
+    }
+
+    @FXML
+    public void endRound() {
+        rockButtonDisabled.set(false);
+        paperButtonDisabled.set(false);
+        scissorButtonDisabled.set(false);
+        nextRoundButtonDisabled.set(true);
+        leaveButtonDisabled.set(true);
+    }
+
+    private void runCountdown() {
+        this.isChoiceAvailable = Boolean.TRUE;
+        Timeline timeline =
+                new Timeline(new KeyFrame(Duration.millis(1000),
+                        e -> {
+                            String decreased = decrease(this.getCountdownLabel());
+                            this.setCountdownLabel(decreased);
+                        }));
+        timeline.setCycleCount(5);
+        timeline.onFinishedProperty().set((ActionEvent ae) -> {
+            Integer result = game.addRound(this.playerChoice.getValue() == null ?
+                            new Item(ItemEnum.NONE) :
+                            this.playerChoice.getValue(),
+                    Computer.makeChoice());
+            setWinner(result);
+            isChoiceAvailable = Boolean.FALSE;
+            endRound();
+        });
+        timeline.play();
+    }
+
+    private String decrease(String value) {
+        return switch (value) {
+            case "5" -> "4";
+            case "4" -> "Scheere";
+            case "Scheere" -> "Stein";
+            case "Stein" -> "Papier";
+            default -> "Resultat";
+        };
+    }
+
+    public Boolean chooseRock() {
+        if (this.isChoiceAvailable) {
+            setPlayerChoice(new Item(ItemEnum.ROCK));
+        }
+        return this.isChoiceAvailable;
+    }
+
+    public Boolean choosePaper() {
+        if (this.isChoiceAvailable) {
+            setPlayerChoice(new Item(ItemEnum.PAPER));
+        }
+        return this.isChoiceAvailable;
+    }
+
+    public Boolean chooseScissor() {
+        if (this.isChoiceAvailable) {
+            setPlayerChoice(new Item(ItemEnum.SCISSOR));
+        }
+        return this.isChoiceAvailable;
+    }
+
+    public Item getPlayerChoice() {
+        return playerChoice.get();
+    }
+
+    public ObjectProperty<Item> playerChoiceProperty() {
+        return playerChoice;
+    }
+
+    public void setPlayerChoice(Item playerChoice) {
+        this.playerChoice.set(playerChoice);
+    }
+
+    public Item getComputerChoice() {
+        return computerChoice.get();
+    }
+
+    public ObjectProperty<Item> computerChoiceProperty() {
+        return computerChoice;
+    }
+
+    public void setComputerChoice(Item computerChoice) {
+        this.computerChoice.set(computerChoice);
+    }
+
+    public Boolean getChoiceAvailable() {
+        return isChoiceAvailable;
+    }
+
+    public void setChoiceAvailable(Boolean choiceAvailable) {
+        isChoiceAvailable = choiceAvailable;
     }
 
     public boolean isNextRoundButtonDisabled() {
@@ -106,44 +218,33 @@ public class GameViewModel {
         this.countdownLabel.set(countdownLabel);
     }
 
-    @FXML
-    public void startGame() {
-        rockButtonDisabled.set(true);
-        paperButtonDisabled.set(true);
-        scissorButtonDisabled.set(true);
-        nextRoundButtonDisabled.set(false);
-        leaveButtonDisabled.set(false);
-        this.runCountdown();
+
+    public String getWinnerLabel() {
+        return winnerLabel.get();
     }
 
-    @FXML
-    public void noGame() {
-        rockButtonDisabled.set(false);
-        paperButtonDisabled.set(false);
-        scissorButtonDisabled.set(false);
-        nextRoundButtonDisabled.set(true);
-        leaveButtonDisabled.set(true);
+    public StringProperty winnerLabelProperty() {
+        return winnerLabel;
     }
 
-    private void runCountdown() {
-        Timeline timeline =
-                new Timeline(new KeyFrame(Duration.millis(1000),
-                        e -> {
-                    String decreased = decrease(this.getCountdownLabel());
-                    this.setCountdownLabel(decreased);
-                }));
-        timeline.setCycleCount(5);
-        timeline.play();
+    public void setWinnerLabel(String winnerLabel) {
+        this.winnerLabel.set(winnerLabel);
     }
 
-    private String decrease(String value) {
-        return switch (value) {
-            case "5" -> "4";
-            case "4" -> "Scheere";
-            case "Scheere" -> "Stein";
-            case "Stein" -> "Papier";
-            default -> "Resultat";
-        };
+    public int getWinner() {
+        return winner.get();
+    }
+
+    public IntegerProperty winnerProperty() {
+        return winner;
+    }
+
+    public void setWinner(int winner) {
+        this.winner.set(winner);
+    }
+
+    public void reset() {
+        this.game = new Game();
     }
 
 }

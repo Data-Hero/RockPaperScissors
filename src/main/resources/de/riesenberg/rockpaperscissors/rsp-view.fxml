@@ -6,54 +6,88 @@
 <?import javafx.stage.Screen?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <AnchorPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}" style="-fx-background-color: #ffffff;"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.riesenberg.rockpaperscissors.view.GameView">
+            prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}"
+            style="-fx-background-color: #ffffff;"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.riesenberg.rockpaperscissors.view.GameView">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
     <children>
-        <SplitPane fx:id="splitPane" dividerPositions="0.7591973244147158" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane fx:id="splitPane" dividerPositions="0.7591973244147158" prefHeight="400.0" prefWidth="600.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <children>
-                        <Label fx:id="countdownLabel"  AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="650.0">
-                            <font>
-                                <Font size="26"/>
-                            </font>
-                        </Label>
-                        <GridPane prefHeight="150" prefWidth="800" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="500.0"  hgap="10" vgap="10">
-                            <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
+                <BorderPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <center>
+                        <VBox alignment="CENTER">
                             <children>
-                                <Button fx:id="nextRound"  style="-fx-background-color: #CDDFE6;" onAction="#onStartGame" text="Nächste Runde" prefWidth="200" prefHeight="120" maxWidth="-Infinity" GridPane.columnIndex="2"/>
-                                <Button fx:id="leave" style="-fx-background-color: #CDDFE6;" onAction="#onLeave" text="Spiel verlassen" prefWidth="200" prefHeight="120" maxWidth="-Infinity" GridPane.columnIndex="1"/>
-                                <Button fx:id="rock" style="-fx-background-color: #CDDFE6;
-                                                -fx-background-image: url('images/rock.png');
-                                                -fx-background-size: 18 18;
-                                                -fx-background-repeat: no-repeat;
-                                                -fx-background-position:left;" text="Stein" prefWidth="200" prefHeight="120" GridPane.columnIndex="1"/>
-                                <Button fx:id="paper" style="-fx-background-color: #CDDFE6;
-                                                -fx-background-image: url('images/paper.png');
-                                                -fx-background-size: 18 18;
-                                                -fx-background-repeat: no-repeat;
-                                                -fx-background-position:left;" text="Papier" prefWidth="200" prefHeight="120" GridPane.columnIndex="2" />
-                                <Button fx:id="scissor" style="-fx-background-color: #CDDFE6;
-                                                -fx-background-image: url('images/scissor.png');
-                                                -fx-background-size: 18 18;
-                                                -fx-background-repeat: no-repeat;
-                                                -fx-background-position:left;" text="Scheere" prefWidth="200" prefHeight="120" GridPane.columnIndex="3" />
+                                <Label fx:id="countdownLabel" alignment="CENTER"
+                                       textAlignment="CENTER" maxWidth="1.7976931348623157E308">
+                                    <font>
+                                        <Font size="26"/>
+                                    </font>
+                                </Label>
+                                <HBox alignment="CENTER" >
+                                    <ImageView fx:id="playerChoice" fitHeight="200.0" fitWidth="200.0"/>
+                                    <ImageView fx:id="computerChoice" fitHeight="200.0" fitWidth="200.0"/>
+                                </HBox>
+                                <Label fx:id="winnerLabel" alignment="CENTER"
+                                       textAlignment="CENTER" maxWidth="1.7976931348623157E308">
+                                    <font>
+                                        <Font size="22"/>
+                                    </font>
+                                </Label>
                             </children>
-                        </GridPane>
-                     </children>
-                </AnchorPane>
+                        </VBox>
+                    </center>
+                    <bottom>
+                        <VBox alignment="CENTER">
+                            <GridPane prefHeight="150" prefWidth="800" alignment="CENTER" hgap="10" vgap="10">
+                                <children>
+                                    <Button fx:id="nextRound"
+                                            onAction="#onStartGame" text="Nächste Runde" prefWidth="200"
+                                            prefHeight="120" maxWidth="-Infinity" GridPane.columnIndex="1"/>
+                                    <Button fx:id="reset" onAction="#onReset"
+                                            text="Zuruecksetzen" prefWidth="200" prefHeight="120" maxWidth="-Infinity"
+                                            GridPane.columnIndex="2"/>
+                                    <Button fx:id="leave" onAction="#onLeave"
+                                            text="Spiel verlassen" prefWidth="200" prefHeight="120" maxWidth="-Infinity"
+                                            GridPane.columnIndex="3"/>
+                                    <Button fx:id="rock" style=" -fx-background-image: url('images/rock.png');
+                                                -fx-background-size: 18 18;
+                                                -fx-background-repeat: no-repeat;
+                                                -fx-background-position:left;" text="Stein" onAction="#onRock" prefWidth="200"
+                                            prefHeight="120" GridPane.columnIndex="1"/>
+                                    <Button fx:id="paper" style="-fx-background-image: url('images/paper.png');
+                                                -fx-background-size: 18 18;
+                                                -fx-background-repeat: no-repeat;
+                                                -fx-background-position:left;" text="Papier" onAction="#onPaper" prefWidth="200"
+                                            prefHeight="120" GridPane.columnIndex="2"/>
+                                    <Button fx:id="scissor" style="-fx-background-image: url('images/scissor.png');
+                                                -fx-background-size: 18 18;
+                                                -fx-background-repeat: no-repeat;
+                                                -fx-background-position:left;" text="Scheere" onAction="#onScissor" prefWidth="200"
+                                            prefHeight="120" GridPane.columnIndex="3"/>
+                                </children>
+                            </GridPane>
+                        </VBox>
+                    </bottom>
+                </BorderPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <TableView prefHeight="398.0" prefWidth="451.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <TableView prefHeight="398.0" prefWidth="451.0" AnchorPane.bottomAnchor="0.0"
+                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columns>
-                            <TableColumn prefWidth="75.0" text="Player One" />
-                            <TableColumn prefWidth="75.0" text="Player Two" />
+                            <TableColumn fx:id="thead1" prefWidth="75.0" text="Player One"/>
+                            <TableColumn fx:id="thead2" prefWidth="75.0" text="Player Two"/>
                         </columns>
                         <columnResizePolicy>
-                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                         </columnResizePolicy>
                     </TableView>
                 </AnchorPane>

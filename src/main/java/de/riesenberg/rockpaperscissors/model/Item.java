@@ -16,7 +16,11 @@ public class Item {
     }
 
     public int compareTo(Item secondItem) {
-        if (this.getItem() == ItemEnum.ROCK && secondItem.getItem() == ItemEnum.SCISSOR ||
+        if (this.item == ItemEnum.NONE) {
+            return -1;
+        } else if (secondItem.getItem() == ItemEnum.NONE) {
+            return 1;
+        } else if (this.getItem() == ItemEnum.ROCK && secondItem.getItem() == ItemEnum.SCISSOR ||
                 this.getItem() == ItemEnum.SCISSOR && secondItem.getItem() == ItemEnum.ROCK) {
             return -1*(this.getItem().getId()-secondItem.getItem().getId());
         } else {

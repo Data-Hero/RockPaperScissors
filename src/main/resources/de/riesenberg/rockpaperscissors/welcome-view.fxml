@@ -12,7 +12,7 @@
       alignment="CENTER"
       fx:controller="de.riesenberg.rockpaperscissors.view.WelcomeView"
       style="-fx-background-color: #ffffff;"
-      prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}">
+      prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}" spacing="25">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
@@ -23,7 +23,7 @@
             </font>
         </Label>
         <HBox spacing="10" alignment="CENTER">
-            <Button text="Neues Spiel" onAction="#onStartButton" prefWidth="90"/>
+            <Button text="Neues Spiel" onAction="#onStartButton" prefWidth="270" prefHeight="90"/>
         </HBox>
     </children>
 </VBox>

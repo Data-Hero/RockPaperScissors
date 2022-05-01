@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -18,18 +20,32 @@ import java.io.IOException;
 
 public class GameView {
     @FXML
-    public Label countdownLabel;
+    public TableColumn thead2;
     @FXML
-    public Button nextRound;
+    public TableColumn thead1;
     @FXML
-    public Button leave;
+    public Label winnerLabel;
     @FXML
-    public Button rock;
+    private Label countdownLabel;
     @FXML
-    public Button paper;
+    private Button nextRound;
     @FXML
-    public Button scissor;
-    public SplitPane splitPane;
+    private Button leave;
+    @FXML
+    private Button rock;
+    @FXML
+    private Button paper;
+    @FXML
+    private Button scissor;
+
+    @FXML
+    private ImageView playerChoice;
+
+    @FXML
+    private ImageView computerChoice;
+
+    @FXML
+    private SplitPane splitPane;
 
     @FXML
     private AnchorPane mainWindow;
@@ -47,10 +63,11 @@ public class GameView {
         leave.visibleProperty().bind(gameViewModel.leaveButtonDisabledProperty());
 
         countdownLabel.textProperty().bind(gameViewModel.countdownLabelProperty());
+        winnerLabel.textProperty().bind(gameViewModel.winnerLabelProperty());
     }
 
     public void onStartGame(ActionEvent actionEvent) {
-        gameViewModel.startGame();
+        gameViewModel.startRound();
     }
 
     public void onLeave(ActionEvent actionEvent) {
@@ -64,4 +81,22 @@ public class GameView {
             throw new RuntimeException(e);
         }
     }
+
+    public void onReset(ActionEvent actionEvent) {
+        gameViewModel.reset();
+    }
+
+    public void onRock(ActionEvent actionEvent) {
+        gameViewModel.chooseRock();
+    }
+
+    public void onPaper(ActionEvent actionEvent) {
+        gameViewModel.choosePaper();
+    }
+
+    public void onScissor(ActionEvent actionEvent) {
+        gameViewModel.chooseScissor();
+    }
+
+
 }
