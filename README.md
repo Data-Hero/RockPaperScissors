@@ -7,5 +7,3 @@ The game "Rock paper scissors" is a well known game. Details and rules can be fo
 There is two players playing against each other - the second player is the computer and acts randomly.
 The game run in multiple rounds.
 A game ends, wenn the first player reaches three points.
-You are welcome to make assumptions.
-
