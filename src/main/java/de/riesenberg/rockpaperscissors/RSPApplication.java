@@ -26,7 +26,9 @@ public class RSPApplication extends Application {
 
         primaryStage.setTitle("Schere, Stein, Papier!");
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image("C:\\Users\\Bijan\\IdeaProjects\\RockPaperScissors\\src\\main\\resources\\de\\riesenberg\\rockpaperscissors\\images\\icon.png"));
+        primaryStage.getIcons().add(new Image(
+                Objects.requireNonNull(getClass().getResourceAsStream("images/icon.png"))
+        ));
         this.primaryStage = primaryStage;
         this.primaryStage.show();
     }
