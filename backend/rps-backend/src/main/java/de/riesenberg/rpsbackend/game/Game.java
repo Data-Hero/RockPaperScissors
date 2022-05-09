@@ -13,7 +13,7 @@ public class Game implements Serializable {
     @Column private String name;
     @Column private Boolean open;
     @Column private Boolean finished;
-    @OneToMany(mappedBy = "game") List<GameRound> gameRoundList;
+    @OneToMany List<GameRound> gameRoundList;
 
 
     public Game() {}

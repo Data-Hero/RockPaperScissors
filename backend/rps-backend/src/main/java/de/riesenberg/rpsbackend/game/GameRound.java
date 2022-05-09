@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="GAMEROUND")
 public class GameRound {
-    @Id private Long id;
+    @Id @GeneratedValue(strategy=GenerationType.AUTO) private Long id;
     @Enumerated(EnumType.STRING) private Item playerOneChoice;
     @Enumerated(EnumType.STRING) private Item playerTwoChoice;
-    @ManyToOne @JoinColumn(name="game_id", nullable = false) private Game game;
+    @ManyToOne private Game game;
 
     public GameRound() {}
 
@@ -35,5 +35,11 @@ public class GameRound {
         this.playerTwoChoice = playerTwoChoice;
     }
 
+    public Game getGame() {
+        return game;
+    }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
 }
