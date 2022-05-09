@@ -1,14 +1,11 @@
-package com.example.rpsbackend.service;
+package de.riesenberg.rpsbackend.service;
 
-import com.example.rpsbackend.controller.GameDto;
-import com.example.rpsbackend.game.Game;
-import com.example.rpsbackend.repository.GameRepository;
+import de.riesenberg.rpsbackend.game.Game;
+import de.riesenberg.rpsbackend.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class GameService {

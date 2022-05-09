@@ -1,7 +1,7 @@
-package com.example.rpsbackend.controller;
+package de.riesenberg.rpsbackend.controller;
 
-import com.example.rpsbackend.game.Game;
-import com.example.rpsbackend.service.GameService;
+import de.riesenberg.rpsbackend.game.Game;
+import de.riesenberg.rpsbackend.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("game")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-
 public class GameController {
 
     private final GameService gameService;
@@ -30,13 +29,13 @@ public class GameController {
     public List<GameDto> getOpenGames() {
         return gameService.getOpenGames()
                 .stream()
-                .map(game -> new GameDto(game.name(), game.open(), game.finished()))
+                .map(game -> new GameDto(game.getName(), game.getOpen(), game.getFinished(), game.getGameRoundList()))
                 .collect(Collectors.toList());
     }
 
     @PostMapping("/game/add")
     public void addGame(@RequestBody GameDto gameDto) {
-        this.gameService.addGame(new Game(gameDto.name(), gameDto.open(), gameDto.finished()));
+        this.gameService.addGame(new Game(gameDto.name(), gameDto.open(), gameDto.finished(), gameDto.gameRoundList()));
     }
 
 

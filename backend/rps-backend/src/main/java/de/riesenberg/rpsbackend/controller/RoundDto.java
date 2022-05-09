@@ -1,4 +1,4 @@
-package com.example.rpsbackend.controller;
+package de.riesenberg.rpsbackend.controller;
 
 public class RoundDto {
     String gameName;
