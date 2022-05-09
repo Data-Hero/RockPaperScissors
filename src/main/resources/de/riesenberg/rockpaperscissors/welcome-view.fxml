@@ -22,8 +22,9 @@
                 <Font size="18"/>
             </font>
         </Label>
-        <HBox spacing="10" alignment="CENTER">
-            <Button text="Neues Spiel" onAction="#onStartButton" prefWidth="270" prefHeight="90"/>
-        </HBox>
+        <VBox spacing="30" alignment="CENTER">
+            <Button text="Neues Spiel gegen den Computer" onAction="#onStartButton" prefWidth="350" prefHeight="90"/>
+            <Button text="Mehrspieler" onAction="#onStartButton" prefWidth="350" prefHeight="90"/>
+        </VBox>
     </children>
 </VBox>

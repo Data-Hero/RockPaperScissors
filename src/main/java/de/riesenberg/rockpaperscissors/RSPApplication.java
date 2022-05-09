@@ -27,8 +27,7 @@ public class RSPApplication extends Application {
         primaryStage.setTitle("Schere, Stein, Papier!");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("images/icon.png"))
-        ));
+                Objects.requireNonNull(getClass().getResourceAsStream("images/icon.png"))));
         this.primaryStage = primaryStage;
         this.primaryStage.show();
     }
