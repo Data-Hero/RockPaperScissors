@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Game {
+
+    private String name;
+    private String password;
     private Integer round;
     private List<Boolean> winnerList;
     private HashMap<Integer, LinkedList<Item>> draw;
@@ -15,6 +18,22 @@ public class Game {
         draw = new HashMap<>();
         draw.put(0, new LinkedList<>());
         draw.put(1, new LinkedList<>());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getRound() {

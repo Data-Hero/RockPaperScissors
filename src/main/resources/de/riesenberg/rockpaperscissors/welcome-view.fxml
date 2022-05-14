@@ -24,7 +24,7 @@
         </Label>
         <VBox spacing="30" alignment="CENTER">
             <Button text="Neues Spiel gegen den Computer" onAction="#onStartButton" prefWidth="350" prefHeight="90"/>
-            <Button text="Mehrspieler" onAction="#onStartButton" prefWidth="350" prefHeight="90"/>
+            <Button text="Mehrspieler" onAction="#onMultiplayerButton" prefWidth="350" prefHeight="90"/>
         </VBox>
     </children>
 </VBox>

@@ -36,4 +36,17 @@ public class WelcomeView {
             throw new RuntimeException(e);
         }
     }
+
+    public void onMultiplayerButton(ActionEvent actionEvent) {
+        Stage labelStage = (Stage) welcomeLabel.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(RSPApplication.class.getResource("lobby-view.fxml"));
+
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+        try {
+            labelStage.setScene(new Scene(fxmlLoader.load(), bounds.getWidth() - 10, bounds.getHeight() - 30));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

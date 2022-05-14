@@ -7,6 +7,7 @@ module de.riesenberg.rockpaperscissors {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires unirest.java;
 
     opens de.riesenberg.rockpaperscissors to javafx.fxml;
     exports de.riesenberg.rockpaperscissors;
