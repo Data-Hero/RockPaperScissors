@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 public class GameView {
     @FXML
     public TableColumn<GameRound, String> playerOneTableColumn;
@@ -55,7 +56,6 @@ public class GameView {
     private AnchorPane mainWindow;
 
     private GameViewModel gameViewModel;
-
 
     @FXML
     private void initialize() {

@@ -27,11 +27,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hildan.fxgson</groupId>
-            <artifactId>fx-gson</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>

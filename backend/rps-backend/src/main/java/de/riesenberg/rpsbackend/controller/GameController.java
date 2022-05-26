@@ -1,6 +1,7 @@
 package de.riesenberg.rpsbackend.controller;
 
 import de.riesenberg.rpsbackend.game.Game;
+import de.riesenberg.rpsbackend.game.GameRound;
 import de.riesenberg.rpsbackend.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,16 +21,16 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping("/game")
-    public GameDto getGame() {
-        return null;
+    @GetMapping("/game/{gameId}")
+    public GameDto getGame(@PathVariable Long gameId) {
+        return gameToGameDto(gameService.getGame(gameId));
     }
 
     @GetMapping("/games")
     public List<GameDto> getOpenGames() {
         return gameService.getOpenGames()
                 .stream()
-                .map(game -> new GameDto(game.getName(), game.getOpen(), game.getFinished(), game.getGameRoundList()))
+                .map(this::gameToGameDto)
                 .collect(Collectors.toList());
     }
 
@@ -39,10 +40,21 @@ public class GameController {
     }
 
 
-    @PostMapping("/round/add")
-    public void addRound(@RequestBody RoundDto roundDto) {
-
+    @PostMapping("/game/{}/round/add")
+    public void addRound(@PathVariable Long gameId, @RequestBody GameRoundDto gameRoundDto) {
+        Game game = gameService.getGame(gameId);
+        this.gameService.addRound(gameId, new GameRound(gameRoundDto, game));
     }
 
+
+    @PostMapping("/game/{}/finish")
+    public void finishGame(@PathVariable Long gameId) {
+        this.gameService.finishGame(gameId);
+    }
+
+
+    private GameDto gameToGameDto(Game game) {
+        return new GameDto(game.getId(), game.getName(), game.getOpen(), game.getFinished(), game.getGameRoundList());
+    }
 
 }

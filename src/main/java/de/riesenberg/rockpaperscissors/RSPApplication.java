@@ -23,7 +23,6 @@ public class RSPApplication extends Application {
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
         Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()-10,bounds.getHeight()-30 );
-
         primaryStage.setTitle("Schere, Stein, Papier!");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(

@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.stage.Screen?>
+
 <AnchorPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}"
             style="-fx-background-color: #ffffff;"
@@ -16,9 +16,7 @@
 
     <BorderPane>
         <center>
-            <TableView fx:id="lobbyTable" BorderPane.alignment="CENTER"
-                       prefHeight="${screen.visualBounds.height}"
-                       prefWidth="${screen.visualBounds.width}">
+            <TableView fx:id="lobbyTable" BorderPane.alignment="CENTER">
                 <columns>
                     <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name"/>
                     <TableColumn fx:id="passwordRequiredColumn" prefWidth="75.0" text="Passwort benötigt"/>
@@ -33,7 +31,7 @@
                     <GridPane prefHeight="150" prefWidth="800" alignment="CENTER" hgap="10" vgap="10">
                         <children>
                             <Button fx:id="leave"
-                                    onAction="#onLeave" text="Spiel verlassen" prefWidth="200"
+                                    onAction="#onLeave" text="Verlassen" prefWidth="200"
                                     prefHeight="120" maxWidth="-Infinity" GridPane.columnIndex="1"/>
                             <Button fx:id="join" onAction="#onJoin"
                                     text="Spiel beitreten" prefWidth="200" prefHeight="120" maxWidth="-Infinity"
@@ -41,6 +39,9 @@
                             <Button fx:id="create" onAction="#onCreate"
                                     text="Spiel erstellen" prefWidth="200" prefHeight="120" maxWidth="-Infinity"
                                     GridPane.columnIndex="3"/>
+                            <Button fx:id="refresh" onAction="#onRefresh"
+                                    text="Erneuern" prefWidth="200" prefHeight="120" maxWidth="-Infinity"
+                                    GridPane.columnIndex="4"/>
                         </children>
                     </GridPane>
             </HBox>

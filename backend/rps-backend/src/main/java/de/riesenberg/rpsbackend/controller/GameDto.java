@@ -8,5 +8,5 @@ import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonSerialize
-public record GameDto(String name, Boolean open, Boolean finished, List<GameRound> gameRoundList) {
+public record GameDto(Long id, String name, Boolean open, Boolean finished, List<GameRound> gameRoundList) {
 }
