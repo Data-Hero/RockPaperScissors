@@ -47,4 +47,7 @@ public class GameService {
         game.setFinished(true);
         gameRepository.save(game);
     }
+
+    public void joinGame(Game game) {
+    }
 }

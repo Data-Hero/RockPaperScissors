@@ -39,6 +39,11 @@ public class GameController {
         this.gameService.addGame(new Game(gameDto.name(), gameDto.open(), gameDto.finished(), gameDto.gameRoundList()));
     }
 
+    @PostMapping("/game/add")
+    public void joinGame(@RequestBody GameDto gameDto) {
+        this.gameService.joinGame(new Game(gameDto.name(), gameDto.open(), gameDto.finished(), gameDto.gameRoundList()));
+    }
+
 
     @PostMapping("/game/{}/round/add")
     public void addRound(@PathVariable Long gameId, @RequestBody GameRoundDto gameRoundDto) {
