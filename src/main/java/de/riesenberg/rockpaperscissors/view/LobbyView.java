@@ -48,6 +48,7 @@ public class LobbyView {
         lobbyViewModel = new LobbyViewModel();
 
         lobbyViewModel.setGameList(FXCollections.observableArrayList());
+        lobbyViewModel.updateGameList();
         lobbyTable.setItems(lobbyViewModel.getGameList());
         nameColumn.setCellValueFactory(cellData -> {
             Game game = cellData.getValue();

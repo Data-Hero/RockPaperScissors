@@ -1,8 +1,7 @@
 package de.riesenberg.rpsbackend.service;
 
-import de.riesenberg.rpsbackend.controller.GameRoundDto;
-import de.riesenberg.rpsbackend.game.Game;
-import de.riesenberg.rpsbackend.game.GameRound;
+import de.riesenberg.rpsbackend.domain.Game;
+import de.riesenberg.rpsbackend.domain.GameRound;
 import de.riesenberg.rpsbackend.repository.GameRepository;
 import de.riesenberg.rpsbackend.repository.GameRoundRepository;
 import org.springframework.beans.factory.annotation.Autowired;

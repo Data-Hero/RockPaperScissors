@@ -29,6 +29,8 @@ public class Requests {
         Unirest.post(BASE_URL+"game").header("accept", "application/json").body(game);
     }
 
+    public static void postJoin(Game game) {
+        Unirest.post(BASE_URL+"game").header("accept", "application/json").body(game);
 
-
+    }
 }

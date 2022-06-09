@@ -1,4 +1,4 @@
-package de.riesenberg.rpsbackend.game;
+package de.riesenberg.rpsbackend.domain;
 
 
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
 package de.riesenberg.rpsbackend.controller;
 
-import de.riesenberg.rpsbackend.game.GameRound;
-import de.riesenberg.rpsbackend.game.Item;
+import de.riesenberg.rpsbackend.domain.GameRound;
+import de.riesenberg.rpsbackend.domain.Item;
 
 public class GameRoundDto {
     Long gameId;

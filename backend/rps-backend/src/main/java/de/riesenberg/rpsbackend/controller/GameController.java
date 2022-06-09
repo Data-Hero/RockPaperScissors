@@ -1,7 +1,7 @@
 package de.riesenberg.rpsbackend.controller;
 
-import de.riesenberg.rpsbackend.game.Game;
-import de.riesenberg.rpsbackend.game.GameRound;
+import de.riesenberg.rpsbackend.domain.Game;
+import de.riesenberg.rpsbackend.domain.GameRound;
 import de.riesenberg.rpsbackend.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +39,7 @@ public class GameController {
         this.gameService.addGame(new Game(gameDto.name(), gameDto.open(), gameDto.finished(), gameDto.gameRoundList()));
     }
 
-    @PostMapping("/game/add")
+    @PostMapping("/game/join")
     public void joinGame(@RequestBody GameDto gameDto) {
         this.gameService.joinGame(new Game(gameDto.name(), gameDto.open(), gameDto.finished(), gameDto.gameRoundList()));
     }

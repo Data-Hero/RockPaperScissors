@@ -2,7 +2,7 @@ package de.riesenberg.rpsbackend.controller;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import de.riesenberg.rpsbackend.game.GameRound;
+import de.riesenberg.rpsbackend.domain.GameRound;
 
 import java.util.List;
 
